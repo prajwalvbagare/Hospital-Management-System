@@ -125,7 +125,7 @@ public class doctorpanel extends JFrame {
 		JButton btnNewButton = new JButton("Back");
 		btnNewButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				new	afterLoginPage().setVisible(true);
+				new	homepage().setVisible(true);
 				dispose();
 			}
 		});

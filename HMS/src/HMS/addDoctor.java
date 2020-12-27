@@ -17,6 +17,7 @@ import java.awt.event.ActionListener;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.awt.event.ActionEvent;
 import javax.swing.JRadioButton;
 import javax.swing.ButtonGroup;
@@ -24,17 +25,19 @@ import javax.swing.JComboBox;
 import javax.swing.DefaultComboBoxModel;
 import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
+import javax.swing.SwingConstants;
 
 public class addDoctor extends JFrame {
 
 	private JPanel contentPane;
 	private JTextField dName;
 	private JTextField dCNo;
-	private JComboBox specialization;
 	private JRadioButton male;
 	private JRadioButton female;
 	private final ButtonGroup buttonGroup = new ButtonGroup();
 	private JTextField age;
+	private JTextField spec;
+	private JTextField ID;
 
 	/**
 	 * Launch the application.
@@ -80,38 +83,38 @@ public class addDoctor extends JFrame {
 		panel_1.add(lblNewLabel_7);
 		
 		JLabel lblNewLabel_1 = new JLabel("Name");
-		lblNewLabel_1.setBounds(108, 78, 94, 23);
+		lblNewLabel_1.setBounds(101, 119, 94, 23);
 		lblNewLabel_1.setForeground(Color.BLUE);
 		lblNewLabel_1.setFont(new Font("Times New Roman", Font.PLAIN, 20));
 		panel.add(lblNewLabel_1);
 		
 		JLabel lblNewLabel_2 = new JLabel("Contact NO");
-		lblNewLabel_2.setBounds(108, 144, 94, 23);
+		lblNewLabel_2.setBounds(101, 185, 94, 23);
 		lblNewLabel_2.setForeground(Color.BLUE);
 		lblNewLabel_2.setFont(new Font("Times New Roman", Font.PLAIN, 20));
 		lblNewLabel_2.setBackground(SystemColor.menu);
 		panel.add(lblNewLabel_2);
 		
 		JLabel lblNewLabel_4 = new JLabel("Gender");
-		lblNewLabel_4.setBounds(108, 229, 94, 23);
+		lblNewLabel_4.setBounds(101, 270, 94, 23);
 		lblNewLabel_4.setForeground(Color.BLUE);
 		lblNewLabel_4.setFont(new Font("Times New Roman", Font.PLAIN, 20));
 		panel.add(lblNewLabel_4);
 		
 		JLabel lblNewLabel_5 = new JLabel("Doctor Speclization");
-		lblNewLabel_5.setBounds(108, 298, 189, 23);
+		lblNewLabel_5.setBounds(101, 339, 189, 23);
 		lblNewLabel_5.setForeground(Color.BLUE);
 		lblNewLabel_5.setFont(new Font("Times New Roman", Font.PLAIN, 20));
 		panel.add(lblNewLabel_5);
 		
 		JButton clear = new JButton("Clear");
-		clear.setBounds(70, 444, 134, 45);
+		clear.setBounds(63, 485, 134, 45);
 		clear.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				dName.setText("");
 				dCNo.setText("");
 				buttonGroup.clearSelection();
-				specialization.setSelectedIndex(0);
+				spec.setText(null);;
 				age.setText(null);
 				dName.requestFocus();
 			}
@@ -121,7 +124,7 @@ public class addDoctor extends JFrame {
 		panel.add(clear);
 		
 		JButton save = new JButton("Save");
-		save.setBounds(342, 444, 134, 45);
+		save.setBounds(335, 485, 134, 45);
 		save.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				String a=dName.getText();
@@ -137,7 +140,7 @@ public class addDoctor extends JFrame {
 					stmt.setString(1,dName.getText());
 					stmt.setString(2,dCNo.getText());
 					stmt.setString(3,buttonGroup.getSelection().getActionCommand());
-					stmt.setString(4,(String)specialization.getSelectedItem());	
+					stmt.setString(4,spec.getText());	
 					stmt.setString(5,age.getText());
 					
 					stmt.executeUpdate();
@@ -157,7 +160,7 @@ public class addDoctor extends JFrame {
 		panel.add(save);
 		
 		JButton back = new JButton("Back");
-		back.setBounds(588, 444, 112, 45);
+		back.setBounds(581, 485, 112, 45);
 		back.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 			new	doctorpanel().setVisible(true);
@@ -177,7 +180,7 @@ public class addDoctor extends JFrame {
 				}
 			}
 		});
-		dName.setBounds(371, 76, 241, 32);
+		dName.setBounds(364, 117, 241, 32);
 		dName.setColumns(10);
 		panel.add(dName);
 		
@@ -194,18 +197,12 @@ public class addDoctor extends JFrame {
 				}
 			}
 		});
-		dCNo.setBounds(371, 142, 241, 32);
+		dCNo.setBounds(364, 183, 241, 32);
 		dCNo.setColumns(10);
 		panel.add(dCNo);
 		
-		specialization = new JComboBox();
-		specialization.setBounds(371, 296, 241, 32);
-		specialization.setModel(new DefaultComboBoxModel(new String[] {"kidney", "general"}));
-		specialization.setBackground(Color.WHITE);
-		panel.add(specialization);
-		
 		JPanel panel_2 = new JPanel();
-		panel_2.setBounds(371, 215, 241, 37);
+		panel_2.setBounds(364, 256, 241, 37);
 		panel.add(panel_2);
 		panel_2.setLayout(null);
 		
@@ -224,7 +221,7 @@ public class addDoctor extends JFrame {
 		JLabel lblNewLabel = new JLabel("Age");
 		lblNewLabel.setFont(new Font("Times New Roman", Font.BOLD, 20));
 		lblNewLabel.setForeground(new Color(0, 0, 255));
-		lblNewLabel.setBounds(108, 367, 94, 31);
+		lblNewLabel.setBounds(101, 408, 94, 31);
 		panel.add(lblNewLabel);
 		
 		age = new JTextField();
@@ -238,8 +235,41 @@ public class addDoctor extends JFrame {
 			}
 		});
 		age.setBackground(Color.WHITE);
-		age.setBounds(371, 367, 105, 31);
+		age.setBounds(364, 408, 105, 31);
 		panel.add(age);
 		age.setColumns(10);
+		
+		spec = new JTextField();
+		spec.setBounds(364, 337, 241, 32);
+		panel.add(spec);
+		spec.setColumns(10);
+		
+		ID = new JTextField();
+		ID.setHorizontalAlignment(SwingConstants.CENTER);
+		ID.setForeground(Color.BLUE);
+		ID.setFont(new Font("Times New Roman", Font.PLAIN, 22));
+		ID.setColumns(10);
+		ID.setBackground(Color.WHITE);
+		ID.setBounds(364, 59, 41, 35);
+		panel.add(ID);
+		
+		viewID();
+	}
+
+	private void viewID() {
+		// TODO Auto-generated method stub
+		try {
+			Class.forName("com.mysql.cj.jdbc.Driver");
+			Connection con=DriverManager.getConnection("jdbc:mysql://localhost:3306/hms", "root", "root");	
+			PreparedStatement smt=con.prepareStatement("SELECT auto_increment FROM information_schema.TABLES WHERE TABLE_SCHEMA=\"hms\" AND TABLE_NAME=\"doctor\"");
+			ResultSet rs=smt.executeQuery();
+			if(rs.next()) {
+                     ID.setText(rs.getString("auto_increment"));
+                     ID.setEditable(false);
+			}
+		}catch(Exception exe)
+		{
+			System.out.println(exe);
+		}
 	}
 }

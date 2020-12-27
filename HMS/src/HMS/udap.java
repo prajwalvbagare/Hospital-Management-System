@@ -103,15 +103,15 @@ public class udap extends JFrame {
 		lblNewLabel.setBounds(407, 11, 96, 24);
 		panel_1.add(lblNewLabel);
 		
-		JLabel lblNewLabel_2 = new JLabel("Enter Patient ID");
+		JLabel lblNewLabel_2 = new JLabel("Patient ID");
 		lblNewLabel_2.setForeground(Color.BLUE);
 		lblNewLabel_2.setFont(new Font("Times New Roman", Font.PLAIN, 20));
-		lblNewLabel_2.setBounds(44, 98, 144, 23);
+		lblNewLabel_2.setBounds(705, 162, 100, 23);
 		panel.add(lblNewLabel_2);
 		
 		patId = new JTextField();
 		patId.setColumns(10);
-		patId.setBounds(198, 102, 86, 20);
+		patId.setBounds(804, 162, 86, 20);
 		panel.add(patId);
 		
 		JLabel lblNewLabel_1_1 = new JLabel("Consulting Doctor");
@@ -183,7 +183,7 @@ public class udap extends JFrame {
 		JButton btnUpdate = new JButton("Update");
 		btnUpdate.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
-				String a=patId.getText();
+				String a=opdId.getText();
 				String b=symp.getText();
 				String c=date.getText();
 				String d=time.getText();
@@ -208,7 +208,6 @@ public class udap extends JFrame {
 					stmt.executeUpdate();
 						JOptionPane.showMessageDialog(null,"Appoinment details updated");
 						con.close();
-						//setVisible(false);
 						new	opd().setVisible(true);
 						dispose();
 				}
@@ -240,9 +239,9 @@ public class udap extends JFrame {
 		JButton btnDelete = new JButton("Delete");
 		btnDelete.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
-				String a=patId.getText();
+				String a=opdId.getText();
 				if(a.isEmpty()) {
-					JOptionPane.showMessageDialog(null,"Enter the Patient ID");
+					JOptionPane.showMessageDialog(null,"Enter the OPD ID");
 				}
 				else
 				{  
@@ -279,20 +278,21 @@ public class udap extends JFrame {
 		JButton btnSearch = new JButton("Search");
 		btnSearch.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
-				String pid=patId.getText();
-				if(pid.isEmpty()) {
-					JOptionPane.showMessageDialog(null,"Patient ID cannot be blank! Enter the Patient ID");
+				String a=opdId.getText();
+				if(a.isEmpty()) {
+					JOptionPane.showMessageDialog(null,"OPD ID cannot be blank! Enter the OPD ID");
 				}
 				else {
 				try {
 					Class.forName("com.mysql.cj.jdbc.Driver");
 					Connection con=DriverManager.getConnection("jdbc:mysql://localhost:3306/hms", "root", "root");	
-					PreparedStatement stmt=con.prepareStatement("SELECT P.patientId,p.name AS pname,p.gender AS pgender,p.age as page,d.doctorId,d.name as dname,specialization,opdID,a.patientId,a.doctorId,symptoms,date,time FROM patient as p INNER JOIN opd as a on p.patientId=a.patientId INNER JOIN doctor as d on d.doctorId=a.doctorid where a.patientId=?");
-					stmt.setString(1,patId.getText());
+					PreparedStatement stmt=con.prepareStatement("SELECT p.patientId,p.name AS pname,p.gender AS pgender,p.age as page,d.doctorId,d.name as dname,specialization,opdID,symptoms,date,time FROM patient as p INNER JOIN opd as a on p.patientId=a.patientId INNER JOIN doctor as d on d.doctorId=a.doctorid where opdID=?");
+					stmt.setString(1,opdId.getText());
 
 					ResultSet rs =stmt.executeQuery();
 					
 					if(rs.next()) {
+						patId.setText(rs.getString("p.patientId"));
 						pName.setText(rs.getString("pname"));
 						pgender.setText(rs.getString("pgender"));
 						page.setText(rs.getString("page"));
@@ -330,25 +330,25 @@ public class udap extends JFrame {
 		btnSearch.setIcon(new ImageIcon("E:\\My Softwares\\Eclipse\\Icon and images for project\\search.png"));
 		btnSearch.setForeground(Color.BLUE);
 		btnSearch.setFont(new Font("Times New Roman", Font.PLAIN, 20));
-		btnSearch.setBounds(582, 92, 146, 34);
+		btnSearch.setBounds(550, 92, 146, 34);
 		panel.add(btnSearch);
 		
-		JLabel lblNewLabel_1 = new JLabel("OPD ID");
+		JLabel lblNewLabel_1 = new JLabel("Enter OPD ID");
 		lblNewLabel_1.setForeground(new Color(0, 0, 255));
 		lblNewLabel_1.setBackground(Color.WHITE);
-		lblNewLabel_1.setFont(new Font("Times New Roman", Font.PLAIN, 17));
+		lblNewLabel_1.setFont(new Font("Times New Roman", Font.PLAIN, 20));
 		lblNewLabel_1.setHorizontalAlignment(SwingConstants.CENTER);
-		lblNewLabel_1.setBounds(719, 162, 65, 16);
+		lblNewLabel_1.setBounds(44, 102, 119, 16);
 		panel.add(lblNewLabel_1);
 		
 		opdId = new JTextField();
-		opdId.setBounds(802, 162, 78, 20);
+		opdId.setBounds(198, 102, 78, 20);
 		panel.add(opdId);
 		opdId.setColumns(10);
 		
 		JLabel lblNewLabel_5 = new JLabel("\r\nName");
 		lblNewLabel_5.setForeground(Color.BLUE);
-		lblNewLabel_5.setFont(new Font("Times New Roman", Font.PLAIN, 19));
+		lblNewLabel_5.setFont(new Font("Times New Roman", Font.PLAIN, 20));
 		lblNewLabel_5.setBounds(48, 158, 63, 23);
 		panel.add(lblNewLabel_5);
 		
@@ -360,26 +360,26 @@ public class udap extends JFrame {
 		
 		JLabel lblNewLabel_9 = new JLabel("Gender");
 		lblNewLabel_9.setForeground(Color.BLUE);
-		lblNewLabel_9.setFont(new Font("Times New Roman", Font.PLAIN, 18));
-		lblNewLabel_9.setBounds(368, 154, 70, 33);
+		lblNewLabel_9.setFont(new Font("Times New Roman", Font.PLAIN, 20));
+		lblNewLabel_9.setBounds(353, 158, 70, 33);
 		panel.add(lblNewLabel_9);
 		
 		pgender = new JTextField();
 		pgender.setColumns(10);
 		pgender.setBackground(Color.WHITE);
-		pgender.setBounds(460, 162, 86, 20);
+		pgender.setBounds(429, 162, 86, 20);
 		panel.add(pgender);
 		
 		JLabel lblNewLabel_6 = new JLabel("Age");
 		lblNewLabel_6.setHorizontalAlignment(SwingConstants.CENTER);
 		lblNewLabel_6.setForeground(Color.BLUE);
-		lblNewLabel_6.setFont(new Font("Times New Roman", Font.PLAIN, 18));
-		lblNewLabel_6.setBounds(564, 159, 63, 23);
+		lblNewLabel_6.setFont(new Font("Times New Roman", Font.PLAIN, 20));
+		lblNewLabel_6.setBounds(525, 159, 63, 23);
 		panel.add(lblNewLabel_6);
 		
 		page = new JTextField();
 		page.setColumns(10);
-		page.setBounds(637, 162, 70, 20);
+		page.setBounds(610, 162, 70, 20);
 		panel.add(page);
 		
 		JLabel lblNewLabel_7 = new JLabel("Name");
@@ -396,8 +396,8 @@ public class udap extends JFrame {
 		
 		JLabel lblNewLabel_8 = new JLabel("Specialization\r\n");
 		lblNewLabel_8.setForeground(Color.BLUE);
-		lblNewLabel_8.setFont(new Font("Times New Roman", Font.PLAIN, 18));
-		lblNewLabel_8.setBounds(368, 275, 100, 20);
+		lblNewLabel_8.setFont(new Font("Times New Roman", Font.PLAIN, 20));
+		lblNewLabel_8.setBounds(353, 274, 124, 20);
 		panel.add(lblNewLabel_8);
 		
 		spec = new JTextField();

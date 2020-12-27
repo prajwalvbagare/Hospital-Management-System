@@ -131,7 +131,7 @@ public class opd extends JFrame {
 		btnNewButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 			
-				new	afterLoginPage().setVisible(true);
+				new	homepage().setVisible(true);
 				setVisible(false);
 			}
 		});

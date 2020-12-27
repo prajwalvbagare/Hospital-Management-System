@@ -74,7 +74,7 @@ public class upordischarge extends JFrame {
 		lblNewLabel.setBackground(new Color(210, 180, 140));
 		lblNewLabel.setForeground(Color.BLUE);
 		lblNewLabel.setFont(new Font("Times New Roman", Font.PLAIN, 20));
-		lblNewLabel.setBounds(52, 78, 102, 25);
+		lblNewLabel.setBounds(52, 165, 102, 25);
 		panel.add(lblNewLabel);
 		
 		JLabel lblNewLabel_8 = new JLabel("Patient Details");
@@ -87,28 +87,27 @@ public class upordischarge extends JFrame {
 		pId = new JTextField();
 		pId.setColumns(10);
 		pId.setBackground(Color.WHITE);
-		pId.setBounds(231, 83, 88, 20);
+		pId.setBounds(231, 170, 88, 20);
 		panel.add(pId);
 		
 		JButton btnNewButton_3 = new JButton("Search");
 		btnNewButton_3.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				
-						String paid=pId.getText();
-				if(paid.isEmpty()) {
-					JOptionPane.showMessageDialog(null,"Patient ID cannot be blank! Enter the Patient ID");
+						String a=aId.getText();
+				if(a.isEmpty()) {
+					JOptionPane.showMessageDialog(null,"Admission ID cannot be blank! Enter the Admission ID");
 				}
 				else {
 				try {
 					Class.forName("com.mysql.cj.jdbc.Driver");
 					Connection con=DriverManager.getConnection("jdbc:mysql://localhost:3306/hms", "root", "root");	
-					PreparedStatement stmt=con.prepareStatement("select p.patientId,name,gender,age,aId,ad.patientId,floorNumber,ward,reason from patient as p inner join admission as ad on p.patientId=ad.patientId where ad.patientId=?");
-					stmt.setString(1,pId.getText());
+					PreparedStatement stmt=con.prepareStatement("select p.patientId,name,gender,age,aId,floorNumber,ward,reason,timestamp from patient as p inner join admission as ad on p.patientId=ad.patientId where aId=?");
+					stmt.setString(1,aId.getText());
 
 					ResultSet rs =stmt.executeQuery();
 					
 					if(rs.next()) {
-						
 						pId.setText(rs.getString("p.patientId"));
 						name.setText(rs.getString("name"));
 						gender.setText(rs.getString("gender"));
@@ -117,14 +116,14 @@ public class upordischarge extends JFrame {
 						ward.setText(rs.getString("ward"));
 						floor.setText(rs.getString("floorNumber"));
 					    aId.setText(rs.getString("aid"));
-				//		date.setText(rs.getString("date"));
-				//		time.setText(rs.getString("time"));
+						date.setText(rs.getString("timestamp"));
 						
                         pId.setEditable(false);
                         aId.setEditable(false);
                         name.setEditable(false);
                         gender.setEditable(false);
                         age.setEditable(false);
+                        date.setEditable(false);
 					}
 					else
 					{
@@ -142,33 +141,33 @@ public class upordischarge extends JFrame {
 		});
 		btnNewButton_3.setForeground(Color.BLUE);
 		btnNewButton_3.setFont(new Font("Times New Roman", Font.PLAIN, 18));
-		btnNewButton_3.setBounds(402, 78, 89, 25);
+		btnNewButton_3.setBounds(402, 103, 89, 25);
 		panel.add(btnNewButton_3);
 		
 		JLabel lblNewLabel_5_1 = new JLabel("\r\nName");
 		lblNewLabel_5_1.setBackground(new Color(210, 180, 140));
 		lblNewLabel_5_1.setForeground(Color.BLUE);
 		lblNewLabel_5_1.setFont(new Font("Times New Roman", Font.PLAIN, 19));
-		lblNewLabel_5_1.setBounds(52, 192, 63, 23);
+		lblNewLabel_5_1.setBounds(52, 217, 63, 23);
 		panel.add(lblNewLabel_5_1);
 		
 		name = new JTextField();
 		name.setColumns(10);
 		name.setBackground(Color.WHITE);
-		name.setBounds(231, 196, 206, 20);
+		name.setBounds(231, 221, 206, 20);
 		panel.add(name);
 		
 		JLabel lblNewLabel_9 = new JLabel("Gender");
 		lblNewLabel_9.setBackground(new Color(210, 180, 140));
 		lblNewLabel_9.setForeground(Color.BLUE);
 		lblNewLabel_9.setFont(new Font("Times New Roman", Font.PLAIN, 18));
-		lblNewLabel_9.setBounds(447, 188, 63, 33);
+		lblNewLabel_9.setBounds(447, 213, 63, 33);
 		panel.add(lblNewLabel_9);
 		
 		gender = new JTextField();
 		gender.setColumns(10);
 		gender.setBackground(Color.WHITE);
-		gender.setBounds(530, 196, 86, 20);
+		gender.setBounds(530, 221, 86, 20);
 		panel.add(gender);
 		
 		JLabel lblNewLabel_6 = new JLabel("Age");
@@ -176,70 +175,62 @@ public class upordischarge extends JFrame {
 		lblNewLabel_6.setHorizontalAlignment(SwingConstants.CENTER);
 		lblNewLabel_6.setForeground(Color.BLUE);
 		lblNewLabel_6.setFont(new Font("Times New Roman", Font.PLAIN, 18));
-		lblNewLabel_6.setBounds(626, 193, 63, 23);
+		lblNewLabel_6.setBounds(626, 218, 63, 23);
 		panel.add(lblNewLabel_6);
 		
 		age = new JTextField();
 		age.setColumns(10);
-		age.setBounds(699, 196, 70, 20);
+		age.setBounds(699, 221, 70, 20);
 		panel.add(age);
 		
 		JLabel lblNewLabel_1 = new JLabel("Floor No");
 		lblNewLabel_1.setBackground(new Color(210, 180, 140));
 		lblNewLabel_1.setForeground(Color.BLUE);
 		lblNewLabel_1.setFont(new Font("Times New Roman", Font.PLAIN, 20));
-		lblNewLabel_1.setBounds(52, 277, 102, 25);
+		lblNewLabel_1.setBounds(52, 312, 102, 25);
 		panel.add(lblNewLabel_1);
 		
 		JLabel lblNewLabel_3 = new JLabel("Ward type");
 		lblNewLabel_3.setBackground(new Color(210, 180, 140));
 		lblNewLabel_3.setForeground(Color.BLUE);
 		lblNewLabel_3.setFont(new Font("Times New Roman", Font.PLAIN, 20));
-		lblNewLabel_3.setBounds(52, 336, 102, 32);
+		lblNewLabel_3.setBounds(52, 371, 102, 32);
 		panel.add(lblNewLabel_3);
 		
 		JLabel lblNewLabel_2 = new JLabel("Reason");
 		lblNewLabel_2.setBackground(new Color(210, 180, 140));
 		lblNewLabel_2.setForeground(Color.BLUE);
 		lblNewLabel_2.setFont(new Font("Times New Roman", Font.PLAIN, 20));
-		lblNewLabel_2.setBounds(52, 395, 102, 25);
+		lblNewLabel_2.setBounds(52, 430, 102, 25);
 		panel.add(lblNewLabel_2);
 		
 		reason = new JTextField();
 		reason.setColumns(10);
-		reason.setBounds(231, 398, 365, 25);
+		reason.setBounds(231, 433, 365, 25);
 		panel.add(reason);
 		
 		JLabel lblNewLabel_4 = new JLabel("Date of admission");
 		lblNewLabel_4.setBackground(new Color(210, 180, 140));
 		lblNewLabel_4.setForeground(Color.BLUE);
 		lblNewLabel_4.setFont(new Font("Times New Roman", Font.PLAIN, 20));
-		lblNewLabel_4.setBounds(52, 452, 149, 25);
+		lblNewLabel_4.setBounds(52, 487, 149, 25);
 		panel.add(lblNewLabel_4);
 		
 		date = new JTextField();
 		date.setColumns(10);
-		date.setBounds(231, 457, 133, 20);
+		date.setBounds(233, 492, 204, 20);
 		panel.add(date);
-		
-		JLabel lblNewLabel_5 = new JLabel("Time of admission");
-		lblNewLabel_5.setBackground(new Color(210, 180, 140));
-		lblNewLabel_5.setForeground(Color.BLUE);
-		lblNewLabel_5.setFont(new Font("Times New Roman", Font.PLAIN, 20));
-		lblNewLabel_5.setBounds(52, 502, 149, 32);
-		panel.add(lblNewLabel_5);
 		
 		JButton btnNewButton = new JButton("Update");
 		btnNewButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				String a=pId.getText();
+				String a=aId.getText();
 				String b=floor.getText();
 				String c=ward.getText();
 				String d=reason.getText();
-		//		String ele=date.getText();
-			//	String f=time.getText();
+				String ele=date.getText();
 				
-				if(a.isEmpty()||b.isEmpty()||c.isEmpty()||d.isEmpty()) {
+				if(a.isEmpty()||b.isEmpty()||c.isEmpty()||d.isEmpty()||ele.isEmpty()) {
 					JOptionPane.showMessageDialog(null,"Please fill all details");
 				}
 				else
@@ -251,9 +242,7 @@ public class upordischarge extends JFrame {
 					stmt.setString(1,floor.getText());
 					stmt.setString(2,reason.getText());
 					stmt.setString(3,ward.getText());
-				    stmt.setString(4,date.getText());
-			      //  stmt.setString(5,time.getText());
-			 //      stmt.setString(6,aId.getText());
+			        stmt.setString(4,aId.getText());
 					
 					stmt.executeUpdate();
 						JOptionPane.showMessageDialog(null,"Admission details updated");
@@ -276,9 +265,9 @@ public class upordischarge extends JFrame {
 		JButton btnNewButton_1 = new JButton("Discharge");
 		btnNewButton_1.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				String a=pId.getText();
+				String a=aId.getText();
 				if(a.isEmpty()) {
-					JOptionPane.showMessageDialog(null,"Enter the Patient ID");
+					JOptionPane.showMessageDialog(null,"Enter the admission ID");
 				}
 				else
 				{  
@@ -292,7 +281,7 @@ public class upordischarge extends JFrame {
 						  
 						int i=stmt.executeUpdate();  
 						System.out.println(i+" records deleted");
-						JOptionPane.showMessageDialog(null,"Admission record deleted");
+						JOptionPane.showMessageDialog(null,"Patient Discharged");
 						con.close();
 						new	upordischarge().setVisible(true);
 						dispose();
@@ -325,7 +314,7 @@ public class upordischarge extends JFrame {
 		lblNewLabel_8_1.setForeground(Color.BLACK);
 		lblNewLabel_8_1.setFont(new Font("Times New Roman", Font.PLAIN, 20));
 		lblNewLabel_8_1.setBackground(new Color(210, 180, 140));
-		lblNewLabel_8_1.setBounds(52, 239, 365, 27);
+		lblNewLabel_8_1.setBounds(52, 274, 365, 27);
 		panel.add(lblNewLabel_8_1);
 		
 		JPanel panel_1_1 = new JPanel();
@@ -347,27 +336,27 @@ public class upordischarge extends JFrame {
 		});
 		clear.setForeground(Color.BLUE);
 		clear.setFont(new Font("Times New Roman", Font.PLAIN, 20));
-		clear.setBounds(695, 78, 89, 23);
+		clear.setBounds(695, 103, 89, 23);
 		panel.add(clear);
 		
 		ward = new JTextField();
-		ward.setBounds(231, 345, 133, 20);
+		ward.setBounds(231, 380, 206, 20);
 		panel.add(ward);
 		ward.setColumns(10);
 		
 		floor = new JTextField();
-		floor.setBounds(233, 277, 86, 20);
+		floor.setBounds(233, 312, 86, 20);
 		panel.add(floor);
 		floor.setColumns(10);
 		
 		JLabel lblNewLabel_10 = new JLabel("Admission ID");
 		lblNewLabel_10.setForeground(new Color(0, 0, 255));
 		lblNewLabel_10.setFont(new Font("Times New Roman", Font.PLAIN, 20));
-		lblNewLabel_10.setBounds(52, 139, 149, 27);
+		lblNewLabel_10.setBounds(52, 103, 149, 27);
 		panel.add(lblNewLabel_10);
 		
 		aId = new JTextField();
-		aId.setBounds(233, 145, 86, 20);
+		aId.setBounds(231, 108, 86, 20);
 		panel.add(aId);
 		aId.setColumns(10);
 	}

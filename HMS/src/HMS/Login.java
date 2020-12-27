@@ -110,7 +110,7 @@ public class Login extends JFrame {
 					if(rs.next())
 					{
 						
-						afterLoginPage sec=new afterLoginPage();
+						homepage sec=new homepage();
 						sec.setVisible(true);
 						dispose();
 					}
@@ -157,7 +157,7 @@ public class Login extends JFrame {
 					if(rs.next())
 					{
 						
-						afterLoginPage sec=new afterLoginPage();
+						homepage sec=new homepage();
 						sec.setVisible(true);
 						dispose();
 					}

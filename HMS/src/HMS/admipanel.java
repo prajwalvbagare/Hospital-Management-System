@@ -107,6 +107,7 @@ public class admipanel extends JFrame {
 			public void actionPerformed(ActionEvent arg0) {
 				new viewadmission().setVisible(true);
 				dispose();
+				
 			}
 		});
 		btnNewButton_1.setHorizontalAlignment(SwingConstants.LEFT);
@@ -130,7 +131,7 @@ public class admipanel extends JFrame {
 		JButton btnNewButton_3 = new JButton("Back");
 		btnNewButton_3.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
-				new	afterLoginPage().setVisible(true);
+				new	homepage().setVisible(true);
 				dispose();
 			}
 		});
@@ -138,5 +139,7 @@ public class admipanel extends JFrame {
 		btnNewButton_3.setFont(new Font("Times New Roman", Font.PLAIN, 20));
 		btnNewButton_3.setBounds(579, 364, 129, 33);
 		contentPane_1.add(btnNewButton_3);
+		
+		
 	}
 }

@@ -99,17 +99,15 @@ public class PatientPanel extends JFrame {
 		btnNewButton.setBounds(296, 108, 233, 53);
 		contentPane.add(btnNewButton);
 		
-		JButton btnNewButton_1 = new JButton("Search/View Patient");
+		JButton btnNewButton_1 = new JButton("Update/Delete Patient");
 		btnNewButton_1.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				new viewUpdateDeletePatient().setVisible(true);
 				dispose();
 			}
 		});
-		btnNewButton_1.setHorizontalAlignment(SwingConstants.LEFT);
 		btnNewButton_1.setForeground(new Color(0, 0, 255));
 		btnNewButton_1.setFont(new Font("Times New Roman", Font.PLAIN, 20));
-		btnNewButton_1.setIcon(new ImageIcon("E:\\My Softwares\\Eclipse\\Icon and images for project\\search.png"));
 		btnNewButton_1.setBounds(296, 197, 233, 53);
 		contentPane.add(btnNewButton_1);
 		
@@ -128,7 +126,7 @@ public class PatientPanel extends JFrame {
 		JButton btnNewButton_3 = new JButton("Back");
 		btnNewButton_3.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				new	afterLoginPage().setVisible(true);
+				new	homepage().setVisible(true);
 				dispose();
 			}
 		});

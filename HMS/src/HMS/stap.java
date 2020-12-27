@@ -35,24 +35,8 @@ public class stap extends JFrame {
 	private JTextField age;
 	private JTextField docId;
 	private JComboBox doctors;
-    private void Fillcombo()
-    {
-    	try {
-    		Class.forName("com.mysql.cj.jdbc.Driver");
-			Connection con=DriverManager.getConnection("jdbc:mysql://localhost:3306/hms", "root", "root");	
-			PreparedStatement stmt=con.prepareStatement("Select * from doctor");
-			ResultSet rs =stmt.executeQuery();
-			
-			while(rs.next()) {
-				String Name=rs.getString("name");
-				doctors.addItem(Name);
-			}
-			con.close();
-    	}
-    	catch(Exception elem) {
-    		JOptionPane.showMessageDialog(null,elem);
-    	}
-    }
+	private JTextField ID;
+    
 	/**
 	 * Launch the application.
 	 */
@@ -74,7 +58,7 @@ public class stap extends JFrame {
 	 */
 	public stap() {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setBounds(100, 100, 912, 590);
+		setBounds(100, 100, 912, 683);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
@@ -82,7 +66,7 @@ public class stap extends JFrame {
 		
 		JPanel panel = new JPanel();
 		panel.setBackground(new Color(240, 255, 255));
-		panel.setBounds(0, 0, 896, 551);
+		panel.setBounds(0, 0, 896, 644);
 		contentPane.add(panel);
 		panel.setLayout(null);
 		
@@ -101,7 +85,7 @@ public class stap extends JFrame {
 		
 		JLabel lblNewLabel_1 = new JLabel("Enter the Follwing Deatils");
 		lblNewLabel_1.setForeground(Color.BLACK);
-		lblNewLabel_1.setBounds(34, 231, 220, 54);
+		lblNewLabel_1.setBounds(49, 375, 220, 54);
 		lblNewLabel_1.setFont(new Font("Times New Roman", Font.PLAIN, 20));
 		panel.add(lblNewLabel_1);
 		
@@ -113,19 +97,19 @@ public class stap extends JFrame {
 		
 		JLabel lblNewLabel_1_1 = new JLabel("Consulting Doctor");
 		lblNewLabel_1_1.setHorizontalAlignment(SwingConstants.CENTER);
-		lblNewLabel_1_1.setBounds(380, 246, 181, 23);
+		lblNewLabel_1_1.setBounds(392, 288, 181, 23);
 		lblNewLabel_1_1.setForeground(Color.BLUE);
 		lblNewLabel_1_1.setFont(new Font("Times New Roman", Font.BOLD, 21));
 		panel.add(lblNewLabel_1_1);
 		
 		JLabel lblNewLabel_2_1 = new JLabel("Symptoms");
-		lblNewLabel_2_1.setBounds(49, 363, 94, 23);
+		lblNewLabel_2_1.setBounds(49, 440, 94, 23);
 		lblNewLabel_2_1.setForeground(Color.BLUE);
 		lblNewLabel_2_1.setFont(new Font("Times New Roman", Font.PLAIN, 20));
 		panel.add(lblNewLabel_2_1);
 		
 		JLabel lblNewLabel_3 = new JLabel("Date and time");
-		lblNewLabel_3.setBounds(49, 408, 144, 38);
+		lblNewLabel_3.setBounds(49, 485, 144, 38);
 		lblNewLabel_3.setForeground(new Color(0, 0, 255));
 		lblNewLabel_3.setFont(new Font("Times New Roman", Font.PLAIN, 20));
 		panel.add(lblNewLabel_3);
@@ -165,21 +149,21 @@ public class stap extends JFrame {
 		doctors.setForeground(new Color(0, 0, 255));
 		doctors.setFont(new Font("Times New Roman", Font.BOLD, 20));
 		doctors.setModel(new DefaultComboBoxModel(new String[] {"Doctors"}));
-		doctors.setBounds(486, 376, 234, 33);
+		doctors.setBounds(83, 278, 234, 33);
 		panel.add(doctors);
 		
 		symptoms = new JTextField();
-		symptoms.setBounds(187, 367, 206, 20);
+		symptoms.setBounds(187, 444, 206, 20);
 		panel.add(symptoms);
 		symptoms.setColumns(10);
 		
 		date = new JTextField();
-		date.setBounds(187, 420, 86, 20);
+		date.setBounds(187, 497, 86, 20);
 		panel.add(date);
 		date.setColumns(10);
 		
 		time = new JTextField();
-		time.setBounds(307, 420, 86, 20);
+		time.setBounds(307, 497, 86, 20);
 		panel.add(time);
 		time.setColumns(10);
 		
@@ -221,13 +205,13 @@ public class stap extends JFrame {
 				}
 			}
 		});
-		btnNewButton.setBounds(392, 492, 162, 33);
+		btnNewButton.setBounds(392, 569, 162, 33);
 		btnNewButton.setForeground(new Color(0, 0, 255));
 		btnNewButton.setFont(new Font("Times New Roman", Font.PLAIN, 20));
 		panel.add(btnNewButton);
 		
 		JButton btnNewButton_1 = new JButton("Back");
-		btnNewButton_1.setBounds(754, 492, 112, 33);
+		btnNewButton_1.setBounds(754, 569, 112, 33);
 		btnNewButton_1.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				new	opd().setVisible(true);
@@ -240,12 +224,12 @@ public class stap extends JFrame {
 		
 		dName = new JTextField();
 		dName.setBackground(Color.WHITE);
-		dName.setBounds(187, 299, 206, 20);
+		dName.setBounds(187, 340, 206, 20);
 		panel.add(dName);
 		dName.setColumns(10);
 		
 		JLabel lblNewLabel_4 = new JLabel("Doctors available");
-		lblNewLabel_4.setBounds(522, 342, 144, 23);
+		lblNewLabel_4.setBounds(131, 243, 144, 23);
 		lblNewLabel_4.setForeground(new Color(0, 0, 255));
 		lblNewLabel_4.setFont(new Font("Times New Roman", Font.PLAIN, 20));
 		panel.add(lblNewLabel_4);
@@ -323,18 +307,18 @@ public class stap extends JFrame {
 		JLabel lblNewLabel_7 = new JLabel("Name");
 		lblNewLabel_7.setFont(new Font("Times New Roman", Font.PLAIN, 20));
 		lblNewLabel_7.setForeground(new Color(0, 0, 255));
-		lblNewLabel_7.setBounds(49, 290, 63, 33);
+		lblNewLabel_7.setBounds(49, 331, 63, 33);
 		panel.add(lblNewLabel_7);
 		
 		JLabel lblNewLabel_8 = new JLabel("Specialization\r\n");
 		lblNewLabel_8.setFont(new Font("Times New Roman", Font.PLAIN, 18));
 		lblNewLabel_8.setForeground(new Color(0, 0, 255));
-		lblNewLabel_8.setBounds(419, 297, 100, 20);
+		lblNewLabel_8.setBounds(419, 338, 100, 20);
 		panel.add(lblNewLabel_8);
 		
 		dSpec = new JTextField();
 		dSpec.setBackground(Color.WHITE);
-		dSpec.setBounds(537, 299, 144, 20);
+		dSpec.setBounds(537, 340, 144, 20);
 		panel.add(dSpec);
 		dSpec.setColumns(10);
 		
@@ -350,7 +334,7 @@ public class stap extends JFrame {
 		panel.add(lblNewLabel_9);
 		
 		docId = new JTextField();
-		docId.setBounds(796, 299, 70, 20);
+		docId.setBounds(796, 340, 70, 20);
 		panel.add(docId);
 		docId.setColumns(10);
 		
@@ -358,7 +342,7 @@ public class stap extends JFrame {
 		lblNewLabel_11.setHorizontalAlignment(SwingConstants.CENTER);
 		lblNewLabel_11.setForeground(new Color(0, 0, 255));
 		lblNewLabel_11.setFont(new Font("Times New Roman", Font.BOLD, 20));
-		lblNewLabel_11.setBounds(713, 296, 57, 20);
+		lblNewLabel_11.setBounds(713, 337, 57, 20);
 		panel.add(lblNewLabel_11);
 		
 		JButton clear = new JButton("Clear");
@@ -370,7 +354,7 @@ public class stap extends JFrame {
 		});
 		clear.setForeground(new Color(0, 0, 255));
 		clear.setFont(new Font("Times New Roman", Font.PLAIN, 18));
-		clear.setBounds(49, 500, 89, 23);
+		clear.setBounds(49, 577, 89, 23);
 		panel.add(clear);
 		
 		JLabel lblNewLabel_1_2 = new JLabel("Patient Deatils");
@@ -381,15 +365,60 @@ public class stap extends JFrame {
 		
 		JLabel lblNewLabel_10 = new JLabel("yyyy/mm/dd");
 		lblNewLabel_10.setFont(new Font("Times New Roman", Font.PLAIN, 14));
-		lblNewLabel_10.setBounds(187, 395, 86, 23);
+		lblNewLabel_10.setBounds(187, 472, 86, 23);
 		panel.add(lblNewLabel_10);
 		
 		JLabel lblNewLabel_10_1 = new JLabel("HH:MM:SS");
 		lblNewLabel_10_1.setFont(new Font("Times New Roman", Font.PLAIN, 14));
-		lblNewLabel_10_1.setBounds(307, 395, 86, 23);
+		lblNewLabel_10_1.setBounds(307, 472, 86, 23);
 		panel.add(lblNewLabel_10_1);
 		
+		ID = new JTextField();
+		ID.setHorizontalAlignment(SwingConstants.CENTER);
+		ID.setForeground(Color.BLUE);
+		ID.setFont(new Font("Times New Roman", Font.PLAIN, 22));
+		ID.setColumns(10);
+		ID.setBackground(Color.WHITE);
+		ID.setBounds(187, 77, 41, 35);
+		panel.add(ID);
+		
 		Fillcombo();
+		viewID();
 
 	}
+	private void viewID() {
+		// TODO Auto-generated method stub
+		try {
+			Class.forName("com.mysql.cj.jdbc.Driver");
+			Connection con=DriverManager.getConnection("jdbc:mysql://localhost:3306/hms", "root", "root");	
+			PreparedStatement smt=con.prepareStatement("SELECT auto_increment FROM information_schema.TABLES WHERE TABLE_SCHEMA=\"hms\" AND TABLE_NAME=\"opd\"");
+			ResultSet rs=smt.executeQuery();
+			if(rs.next()) {
+                     ID.setText(rs.getString("auto_increment"));
+                     ID.setEditable(false);
+			}
+		}catch(Exception exe)
+		{
+			System.out.println(exe);
+		}
+	}
+
+	private void Fillcombo()
+    {
+    	try {
+    		Class.forName("com.mysql.cj.jdbc.Driver");
+			Connection con=DriverManager.getConnection("jdbc:mysql://localhost:3306/hms", "root", "root");	
+			PreparedStatement stmt=con.prepareStatement("Select * from doctor");
+			ResultSet rs =stmt.executeQuery();
+			
+			while(rs.next()) {
+				String Name=rs.getString("name");
+				doctors.addItem(Name);
+			}
+			con.close();
+    	}
+    	catch(Exception elem) {
+    		JOptionPane.showMessageDialog(null,elem);
+    	}
+    }
 }
