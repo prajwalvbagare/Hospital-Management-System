@@ -61,19 +61,19 @@ public class homepage extends JFrame {
 		panel.add(lblNewLabel);
 		
 		JLabel lblNewLabel_1 = new JLabel("");
-		lblNewLabel_1.setIcon(new ImageIcon("E:\\My Softwares\\Eclipse\\Icon and images for project\\128-128-6595d2c267c26c4edc2fc7173b41b4fc-doctor.png"));
+		lblNewLabel_1.setIcon(new ImageIcon("D:\\My Softwares\\Eclipse\\Icon and images for project\\128-128-6595d2c267c26c4edc2fc7173b41b4fc-doctor.png"));
 		lblNewLabel_1.setHorizontalAlignment(SwingConstants.CENTER);
 		lblNewLabel_1.setBounds(57, 103, 132, 145);
 		panel.add(lblNewLabel_1);
 		
 		JLabel lblNewLabel_2 = new JLabel("");
 		lblNewLabel_2.setHorizontalAlignment(SwingConstants.CENTER);
-		lblNewLabel_2.setIcon(new ImageIcon("E:\\My Softwares\\Eclipse\\Icon and images for project\\doctor.png"));
+		lblNewLabel_2.setIcon(new ImageIcon("D:\\My Softwares\\Eclipse\\Icon and images for project\\doctor.png"));
 		lblNewLabel_2.setBounds(287, 103, 132, 145);
 		panel.add(lblNewLabel_2);
 		
 		JLabel lblNewLabel_3 = new JLabel("");
-		lblNewLabel_3.setIcon(new ImageIcon("E:\\My Softwares\\Eclipse\\Icon and images for project\\hospital.png"));
+		lblNewLabel_3.setIcon(new ImageIcon("D:\\My Softwares\\Eclipse\\Icon and images for project\\hospital.png"));
 		lblNewLabel_3.setHorizontalAlignment(SwingConstants.CENTER);
 		lblNewLabel_3.setBounds(537, 103, 132, 145);
 		panel.add(lblNewLabel_3);
@@ -116,7 +116,7 @@ public class homepage extends JFrame {
 		
 		JLabel lblNewLabel_4 = new JLabel("");
 		lblNewLabel_4.setHorizontalAlignment(SwingConstants.CENTER);
-		lblNewLabel_4.setIcon(new ImageIcon("E:\\My Softwares\\Eclipse\\Icon and images for project\\appointment.png"));
+		lblNewLabel_4.setIcon(new ImageIcon("D:\\My Softwares\\Eclipse\\Icon and images for project\\appointment.png"));
 		lblNewLabel_4.setBounds(146, 384, 132, 145);
 		panel.add(lblNewLabel_4);
 		
@@ -133,7 +133,7 @@ public class homepage extends JFrame {
 		panel.add(btnNewButton_3);
 		
 		JLabel lblNewLabel_5 = new JLabel("");
-		lblNewLabel_5.setIcon(new ImageIcon("E:\\My Softwares\\Eclipse\\Icon and images for project\\hospital-bed.png"));
+		lblNewLabel_5.setIcon(new ImageIcon("D:\\My Softwares\\Eclipse\\Icon and images for project\\hospital-bed.png"));
 		lblNewLabel_5.setBounds(443, 384, 132, 145);
 		panel.add(lblNewLabel_5);
 		
@@ -151,7 +151,7 @@ public class homepage extends JFrame {
 		panel.add(btnNewButton_4);
 		
 		JButton btnNewButton_5 = new JButton("Logout");
-		btnNewButton_5.setIcon(new ImageIcon("E:\\My Softwares\\Eclipse\\Icon and images for project\\exit.png"));
+		btnNewButton_5.setIcon(new ImageIcon("D:\\My Softwares\\Eclipse\\Icon and images for project\\exit.png"));
 		btnNewButton_5.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				new Login().setVisible(true);

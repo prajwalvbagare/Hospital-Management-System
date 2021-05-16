@@ -22,6 +22,7 @@ import java.sql.ResultSet;
 import java.awt.event.ActionEvent;
 import javax.swing.SwingConstants;
 import javax.swing.ButtonGroup;
+import javax.swing.ImageIcon;
 
 public class admission extends JFrame{
 	
@@ -38,7 +39,6 @@ public class admission extends JFrame{
 	private JRadioButton special;
 	private JRadioButton semigeneral;
 	private JComboBox floorno;
-	private JTextField ID;
 	
 
 	/**
@@ -177,13 +177,11 @@ public class admission extends JFrame{
 				try {
 					Class.forName("com.mysql.cj.jdbc.Driver");
 					Connection con=DriverManager.getConnection("jdbc:mysql://localhost:3306/hms", "root", "root");	
-					PreparedStatement stmt=con.prepareStatement("insert into admission(aId,patientId,floorNumber,reason,ward)values(null,?,?,?,?)");
+					PreparedStatement stmt=con.prepareStatement("insert into admission(patientId,floorNumber,reason,ward)values(?,?,?,?)");
 					stmt.setString(1,pID.getText());
 					stmt.setString(2,(String)floorno.getSelectedItem());
 					stmt.setString(3,reason.getText());
 					stmt.setString(4,buttonGroup.getSelection().getActionCommand());
-				//	stmt.setString(5,adDate.getText());
-				//	stmt.setString(6,adTime.getText());
 					
 					
 					stmt.executeUpdate();
@@ -227,6 +225,8 @@ public class admission extends JFrame{
 		panel_1_1.add(lblNewLabel_7);
 		
 		JButton btnNewButton_3 = new JButton("Search");
+		btnNewButton_3.setHorizontalAlignment(SwingConstants.LEFT);
+		btnNewButton_3.setIcon(new ImageIcon("D:\\My Softwares\\Eclipse\\Icon and images for project\\search.png"));
 		btnNewButton_3.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				String pid=pID.getText();
@@ -271,7 +271,7 @@ public class admission extends JFrame{
 		});
 		btnNewButton_3.setFont(new Font("Times New Roman", Font.PLAIN, 18));
 		btnNewButton_3.setForeground(new Color(0, 0, 255));
-		btnNewButton_3.setBounds(392, 95, 89, 25);
+		btnNewButton_3.setBounds(392, 86, 124, 34);
 		panel.add(btnNewButton_3);
 		
 		JLabel lblNewLabel_5_1 = new JLabel("\r\nName");
@@ -311,7 +311,7 @@ public class admission extends JFrame{
 		panel.add(age);
 		
 		JLabel lblNewLabel_8 = new JLabel("Patient Details");
-		lblNewLabel_8.setBounds(340, 48, 165, 27);
+		lblNewLabel_8.setBounds(40, 48, 165, 27);
 		lblNewLabel_8.setFont(new Font("Times New Roman", Font.PLAIN, 20));
 		lblNewLabel_8.setForeground(Color.BLACK);
 		panel.add(lblNewLabel_8);
@@ -323,35 +323,8 @@ public class admission extends JFrame{
 		lblNewLabel_8_1.setBounds(40, 239, 365, 27);
 		panel.add(lblNewLabel_8_1);
 		
-		ID = new JTextField();
-		ID.setHorizontalAlignment(SwingConstants.CENTER);
-		ID.setForeground(Color.BLUE);
-		ID.setFont(new Font("Times New Roman", Font.PLAIN, 22));
-		ID.setColumns(10);
-		ID.setBackground(Color.WHITE);
-		ID.setBounds(154, 48, 41, 35);
-		panel.add(ID);
-		
 		Fillcombo();
-		viewID();
 	}
-	private void viewID() {
-		// TODO Auto-generated method stub
-		try {
-			Class.forName("com.mysql.cj.jdbc.Driver");
-			Connection con=DriverManager.getConnection("jdbc:mysql://localhost:3306/hms", "root", "root");	
-			PreparedStatement smt=con.prepareStatement("SELECT auto_increment FROM information_schema.TABLES WHERE TABLE_SCHEMA=\"hms\" AND TABLE_NAME=\"admission\"");
-			ResultSet rs=smt.executeQuery();
-			if(rs.next()) {
-                     ID.setText(rs.getString("auto_increment"));
-                     ID.setEditable(false);
-			}
-		}catch(Exception exe)
-		{
-			System.out.println(exe);
-		}
-	}
-
 	private void Fillcombo()
     {
     	try {

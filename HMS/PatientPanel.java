@@ -95,7 +95,7 @@ public class PatientPanel extends JFrame {
 		});
 		btnNewButton.setForeground(new Color(0, 0, 255));
 		btnNewButton.setFont(new Font("Times New Roman", Font.PLAIN, 20));
-		btnNewButton.setIcon(new ImageIcon("E:\\My Softwares\\Eclipse\\Icon and images for project\\add new patient.png"));
+		btnNewButton.setIcon(new ImageIcon("D:\\My Softwares\\Eclipse\\Icon and images for project\\add new patient.png"));
 		btnNewButton.setBounds(296, 108, 233, 53);
 		contentPane.add(btnNewButton);
 		

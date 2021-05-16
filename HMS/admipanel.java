@@ -56,7 +56,7 @@ public class admipanel extends JFrame {
 		panel.setBounds(0, 24, 741, 58);
 		contentPane_1.add(panel);
 		
-		JLabel lblAdmissionPannel = new JLabel("Admission Pannel");
+		JLabel lblAdmissionPannel = new JLabel("Admission Panel");
 		lblAdmissionPannel.setHorizontalAlignment(SwingConstants.CENTER);
 		lblAdmissionPannel.setForeground(Color.WHITE);
 		lblAdmissionPannel.setFont(new Font("Times New Roman", Font.BOLD, 21));

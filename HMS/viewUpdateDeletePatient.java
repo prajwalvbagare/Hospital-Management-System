@@ -239,7 +239,7 @@ public class viewUpdateDeletePatient extends JFrame {
 		});
 		btnNewButton.setForeground(new Color(0, 0, 255));
 		btnNewButton.setFont(new Font("Times New Roman", Font.PLAIN, 20));
-		btnNewButton.setIcon(new ImageIcon("E:\\My Softwares\\Eclipse\\Icon and images for project\\search.png"));
+		btnNewButton.setIcon(new ImageIcon("D:\\My Softwares\\Eclipse\\Icon and images for project\\search.png"));
 		btnNewButton.setBounds(672, 79, 146, 34);
 		panel.add(btnNewButton);
 		

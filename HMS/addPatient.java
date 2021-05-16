@@ -41,7 +41,6 @@ public class addPatient extends JFrame {
 	private JComboBox bloodGroup;
 	
 	private final ButtonGroup buttonGroup = new ButtonGroup();
-	private JTextField ID;
 
 	/**
 	 * Launch the application.
@@ -147,7 +146,7 @@ public class addPatient extends JFrame {
 				try {
 					Class.forName("com.mysql.cj.jdbc.Driver");
 					Connection con=DriverManager.getConnection("jdbc:mysql://localhost:3306/hms", "root", "root");	
-					PreparedStatement stmt=con.prepareStatement("insert into patient(patientId,name,contactNo,age,gender,bloodGroup,address)values(null,?,?,?,?,?,?)");
+					PreparedStatement stmt=con.prepareStatement("insert into patient(name,contactNo,age,gender,bloodGroup,address)values(?,?,?,?,?,?)");
 					stmt.setString(1,name.getText());
 					stmt.setString(2,contactNo.getText());
 					stmt.setString(3,age.getText());
@@ -284,38 +283,13 @@ public class addPatient extends JFrame {
 		other.setBounds(217, 15, 66, 23);
 		panel_2.add(other);
 		
-		ID = new JTextField();
-		ID.setForeground(new Color(0, 0, 255));
-		ID.setHorizontalAlignment(SwingConstants.CENTER);
-		ID.setBackground(Color.WHITE);
-		ID.setFont(new Font("Times New Roman", Font.PLAIN, 22));
-		ID.setBounds(376, 52, 41, 35);
-		panel.add(ID);
-		ID.setColumns(10);
-		
-		JLabel lblNewLabel = new JLabel("New Patient ID");
-		lblNewLabel.setForeground(new Color(0, 0, 255));
+		JLabel lblNewLabel = new JLabel("Enter Patient Details");
+		lblNewLabel.setForeground(Color.BLACK);
 		lblNewLabel.setFont(new Font("Times New Roman", Font.PLAIN, 20));
-		lblNewLabel.setBounds(135, 53, 134, 36);
+		lblNewLabel.setBounds(135, 53, 163, 36);
 		panel.add(lblNewLabel);
 		
-		viewID();
+		
 	}
 
-	private void viewID() {
-		// TODO Auto-generated method stub
-		try {
-			Class.forName("com.mysql.cj.jdbc.Driver");
-			Connection con=DriverManager.getConnection("jdbc:mysql://localhost:3306/hms", "root", "root");	
-			PreparedStatement smt=con.prepareStatement("SELECT auto_increment FROM information_schema.TABLES WHERE TABLE_SCHEMA=\"hms\" AND TABLE_NAME=\"patient\"");
-			ResultSet rs=smt.executeQuery();
-			if(rs.next()) {
-                     ID.setText(rs.getString("auto_increment"));
-                     ID.setEditable(false);
-			}
-		}catch(Exception exe)
-		{
-			System.out.println(exe);
-		}
-	}
 }

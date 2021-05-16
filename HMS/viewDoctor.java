@@ -54,7 +54,7 @@ public class viewDoctor extends JFrame {
 	 */
 	public viewDoctor() {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setBounds(100, 100, 861, 527);
+		setBounds(100, 100, 861, 431);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
@@ -62,24 +62,24 @@ public class viewDoctor extends JFrame {
 		
 		JPanel panel = new JPanel();
 		panel.setLayout(null);
-		panel.setBounds(0, 0, 844, 488);
+		panel.setBounds(0, 0, 844, 392);
 		contentPane.add(panel);
 		
 		JLabel lblNewLabel = new JLabel("To delete records ");
 		lblNewLabel.setForeground(Color.BLUE);
 		lblNewLabel.setFont(new Font("Times New Roman", Font.PLAIN, 20));
-		lblNewLabel.setBounds(28, 370, 149, 23);
+		lblNewLabel.setBounds(27, 280, 149, 23);
 		panel.add(lblNewLabel);
 		
 		JLabel lblNewLabel_1 = new JLabel("Enter Doctor ID");
 		lblNewLabel_1.setForeground(Color.BLUE);
 		lblNewLabel_1.setFont(new Font("Times New Roman", Font.PLAIN, 20));
-		lblNewLabel_1.setBounds(28, 414, 149, 23);
+		lblNewLabel_1.setBounds(27, 349, 149, 23);
 		panel.add(lblNewLabel_1);
 		
 		dId = new JTextField();
 		dId.setColumns(10);
-		dId.setBounds(198, 414, 86, 23);
+		dId.setBounds(197, 349, 86, 23);
 		panel.add(dId);
 		
 		JButton btnNewButton = new JButton("Delete");
@@ -115,7 +115,7 @@ public class viewDoctor extends JFrame {
 		});
 		btnNewButton.setForeground(new Color(0, 0, 255));
 		btnNewButton.setFont(new Font("Times New Roman", Font.PLAIN, 20));
-		btnNewButton.setBounds(379, 417, 89, 23);
+		btnNewButton.setBounds(378, 352, 89, 23);
 		panel.add(btnNewButton);
 		
 		JButton btnNewButton_2 = new JButton("Back");
@@ -127,7 +127,7 @@ public class viewDoctor extends JFrame {
 				dispose();
 			}
 		});
-		btnNewButton_2.setBounds(680, 417, 89, 23);
+		btnNewButton_2.setBounds(679, 352, 89, 23);
 		panel.add(btnNewButton_2);
 		
 		JPanel panel_1_1 = new JPanel();
@@ -144,7 +144,7 @@ public class viewDoctor extends JFrame {
 		lblNewLabel_7.setFont(new Font("Times New Roman", Font.PLAIN, 20));
 		
 		JScrollPane scrollPane = new JScrollPane();
-		scrollPane.setBounds(27, 59, 777, 244);
+		scrollPane.setBounds(27, 59, 777, 151);
 		panel.add(scrollPane);
 		
 		table = new JTable();
@@ -168,7 +168,7 @@ public class viewDoctor extends JFrame {
 			Class.forName("com.mysql.cj.jdbc.Driver");
 			Connection con=DriverManager.getConnection("jdbc:mysql://localhost:3306/hms", "root", "root");	
 									
-			PreparedStatement stmt=con.prepareStatement("Select doctorId as D_ID,name as Name,specialization as Specialization,gender as Gender,age as Age,contactNo as Contact_No from doctor");
+			PreparedStatement stmt=con.prepareStatement("Select doctorId as Doctor_ID,name as Name,specialization as Specialization,gender as Gender,age as Age,contactNo as Contact_No from doctor");
 
 			ResultSet rs =stmt.executeQuery();
 			table.setModel(DbUtils.resultSetToTableModel(rs));

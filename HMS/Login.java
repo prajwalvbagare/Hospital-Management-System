@@ -133,7 +133,7 @@ public class Login extends JFrame {
 		loginButton.setForeground(Color.BLACK);
 		loginButton.setBackground(Color.WHITE);
 		loginButton.setBounds(251, 364, 107, 23);
-		loginButton.setIcon(new ImageIcon("E:\\My Softwares\\Eclipse\\Icon and images for project\\login.png"));
+		loginButton.setIcon(new ImageIcon("D:\\My Softwares\\Eclipse\\Icon and images for project\\login.png"));
 		loginButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 		
@@ -185,7 +185,7 @@ public class Login extends JFrame {
 		
 		JButton btnNewButton = new JButton("Close");
 		btnNewButton.setHorizontalAlignment(SwingConstants.LEFT);
-		btnNewButton.setIcon(new ImageIcon("E:\\My Softwares\\Eclipse\\Icon and images for project\\Close.png"));
+		btnNewButton.setIcon(new ImageIcon("D:\\My Softwares\\Eclipse\\Icon and images for project\\Close.png"));
 		btnNewButton.setBackground(Color.WHITE);
 		btnNewButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
@@ -197,7 +197,7 @@ public class Login extends JFrame {
 		contentPane.add(btnNewButton);
 		
 		JLabel lblNewLabel = new JLabel("New label");
-		lblNewLabel.setIcon(new ImageIcon("E:\\My Softwares\\Eclipse\\Icon and images for project\\login Background test.png"));
+		lblNewLabel.setIcon(new ImageIcon("D:\\My Softwares\\Eclipse\\Icon and images for project\\login Background test.png"));
 		lblNewLabel.setBounds(0, 0, 751, 441);
 		contentPane.add(lblNewLabel);
 	}

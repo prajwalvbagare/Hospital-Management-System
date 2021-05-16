@@ -37,7 +37,6 @@ public class addDoctor extends JFrame {
 	private final ButtonGroup buttonGroup = new ButtonGroup();
 	private JTextField age;
 	private JTextField spec;
-	private JTextField ID;
 
 	/**
 	 * Launch the application.
@@ -136,7 +135,7 @@ public class addDoctor extends JFrame {
 				try {
 					Class.forName("com.mysql.cj.jdbc.Driver");
 					Connection con=DriverManager.getConnection("jdbc:mysql://localhost:3306/hms", "root", "root");
-					PreparedStatement stmt=con.prepareStatement("insert into doctor(doctorId,name,contactNo,gender,specialization,age)values(null,?,?,?,?,?)");
+					PreparedStatement stmt=con.prepareStatement("insert into doctor(name,contactNo,gender,specialization,age)values(?,?,?,?,?)");
 					stmt.setString(1,dName.getText());
 					stmt.setString(2,dCNo.getText());
 					stmt.setString(3,buttonGroup.getSelection().getActionCommand());
@@ -244,32 +243,11 @@ public class addDoctor extends JFrame {
 		panel.add(spec);
 		spec.setColumns(10);
 		
-		ID = new JTextField();
-		ID.setHorizontalAlignment(SwingConstants.CENTER);
-		ID.setForeground(Color.BLUE);
-		ID.setFont(new Font("Times New Roman", Font.PLAIN, 22));
-		ID.setColumns(10);
-		ID.setBackground(Color.WHITE);
-		ID.setBounds(364, 59, 41, 35);
-		panel.add(ID);
+		JLabel lblNewLabel_3 = new JLabel("Enter Doctor Details");
+		lblNewLabel_3.setFont(new Font("Times New Roman", Font.PLAIN, 20));
+		lblNewLabel_3.setBounds(101, 63, 189, 23);
+		panel.add(lblNewLabel_3);
 		
-		viewID();
 	}
 
-	private void viewID() {
-		// TODO Auto-generated method stub
-		try {
-			Class.forName("com.mysql.cj.jdbc.Driver");
-			Connection con=DriverManager.getConnection("jdbc:mysql://localhost:3306/hms", "root", "root");	
-			PreparedStatement smt=con.prepareStatement("SELECT auto_increment FROM information_schema.TABLES WHERE TABLE_SCHEMA=\"hms\" AND TABLE_NAME=\"doctor\"");
-			ResultSet rs=smt.executeQuery();
-			if(rs.next()) {
-                     ID.setText(rs.getString("auto_increment"));
-                     ID.setEditable(false);
-			}
-		}catch(Exception exe)
-		{
-			System.out.println(exe);
-		}
-	}
 }

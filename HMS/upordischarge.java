@@ -20,6 +20,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.awt.event.ActionEvent;
 import javax.swing.ButtonGroup;
+import javax.swing.ImageIcon;
 
 public class upordischarge extends JFrame {
 
@@ -91,6 +92,8 @@ public class upordischarge extends JFrame {
 		panel.add(pId);
 		
 		JButton btnNewButton_3 = new JButton("Search");
+		btnNewButton_3.setHorizontalAlignment(SwingConstants.LEFT);
+		btnNewButton_3.setIcon(new ImageIcon("D:\\My Softwares\\Eclipse\\Icon and images for project\\search.png"));
 		btnNewButton_3.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				
@@ -141,7 +144,7 @@ public class upordischarge extends JFrame {
 		});
 		btnNewButton_3.setForeground(Color.BLUE);
 		btnNewButton_3.setFont(new Font("Times New Roman", Font.PLAIN, 18));
-		btnNewButton_3.setBounds(402, 103, 89, 25);
+		btnNewButton_3.setBounds(402, 103, 108, 25);
 		panel.add(btnNewButton_3);
 		
 		JLabel lblNewLabel_5_1 = new JLabel("\r\nName");
@@ -336,7 +339,7 @@ public class upordischarge extends JFrame {
 		});
 		clear.setForeground(Color.BLUE);
 		clear.setFont(new Font("Times New Roman", Font.PLAIN, 20));
-		clear.setBounds(695, 103, 89, 23);
+		clear.setBounds(682, 103, 102, 25);
 		panel.add(clear);
 		
 		ward = new JTextField();

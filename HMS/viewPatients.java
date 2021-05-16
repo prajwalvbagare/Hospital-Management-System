@@ -150,7 +150,7 @@ public class viewPatients extends JFrame {
 		panel_1_1.setBounds(0, 11, 949, 37);
 		panel.add(panel_1_1);
 		
-		JLabel lblNewLabel_7 = new JLabel("Patient Addmission");
+		JLabel lblNewLabel_7 = new JLabel("Patient Details");
 		lblNewLabel_7.setForeground(Color.WHITE);
 		lblNewLabel_7.setFont(new Font("Times New Roman", Font.PLAIN, 20));
 		panel_1_1.add(lblNewLabel_7);
@@ -165,7 +165,7 @@ public class viewPatients extends JFrame {
 			Class.forName("com.mysql.cj.jdbc.Driver");
 			Connection con=DriverManager.getConnection("jdbc:mysql://localhost:3306/hms", "root", "root");	
 									
-			PreparedStatement stmt=con.prepareStatement("Select patientId as PID,name as Name,gender as Gender,age as Age,bloodGroup as Bloodgroup,contactNo as ConractNo,address as Address from patient");
+			PreparedStatement stmt=con.prepareStatement("Select patientId as Patient_ID,name as Name,gender as Gender,age as Age,bloodGroup as Bloodgroup,contactNo as ConractNo,address as Address from patient");
 
 			ResultSet rs =stmt.executeQuery();
 			table.setModel(DbUtils.resultSetToTableModel(rs));

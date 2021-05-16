@@ -9,7 +9,6 @@ import javax.swing.border.EmptyBorder;
 
 import net.proteanit.sql.DbUtils;
 
-import javax.swing.JTable;
 import javax.swing.JScrollPane;
 import javax.swing.JButton;
 import javax.swing.JLabel;
@@ -24,15 +23,16 @@ import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.awt.event.ActionEvent;
+import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
-import javax.swing.SwingConstants;
 
-public class viewappoinments extends JFrame {
+public class viewadmission extends JFrame {
 
 	private JPanel contentPane;
+	private JTextField aId;
 	private JTable table;
-	private JTextField opdId;
 	
+
 	/**
 	 * Launch the application.
 	 */
@@ -40,7 +40,7 @@ public class viewappoinments extends JFrame {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
-					viewappoinments frame = new viewappoinments();
+					viewadmission frame = new viewadmission();
 					frame.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
@@ -52,59 +52,42 @@ public class viewappoinments extends JFrame {
 	/**
 	 * Create the frame.
 	 */
-	public viewappoinments() {
+	public viewadmission() {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setBounds(100, 100, 1141, 612);
+		setBounds(100, 100, 1348, 597);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
 		
 		JPanel panel = new JPanel();
-		panel.setBounds(0, 0, 1125, 573);
-		contentPane.add(panel);
 		panel.setLayout(null);
-		
-		JScrollPane scrollPane = new JScrollPane();
-		scrollPane.setBounds(23, 74, 1074, 257);
-		panel.add(scrollPane);
-		
-		table = new JTable();
-		table.setFont(new Font("Tahoma", Font.PLAIN, 12));
-		table.setModel(new DefaultTableModel(
-			new Object[][] {
-			},
-			new String[] {
-				"  PID", "  OPD_ID", "P_Age", "P_Gender", "D_Name", "Specialization", "Symptoms", "Date", "Time"
-			}
-		));
-		scrollPane.setViewportView(table);
+		panel.setBounds(0, 0, 1332, 573);
+		contentPane.add(panel);
 		
 		JLabel lblNewLabel = new JLabel("To delete records ");
-		lblNewLabel.setBounds(59, 376, 149, 23);
 		lblNewLabel.setForeground(Color.BLUE);
 		lblNewLabel.setFont(new Font("Times New Roman", Font.PLAIN, 20));
+		lblNewLabel.setBounds(59, 376, 149, 23);
 		panel.add(lblNewLabel);
 		
-		JLabel lblNewLabel_1 = new JLabel("Enter OPD ID");
-		lblNewLabel_1.setBounds(59, 420, 149, 23);
+		JLabel lblNewLabel_1 = new JLabel("Enter Admission ID");
 		lblNewLabel_1.setForeground(Color.BLUE);
 		lblNewLabel_1.setFont(new Font("Times New Roman", Font.PLAIN, 20));
+		lblNewLabel_1.setBounds(59, 420, 175, 23);
 		panel.add(lblNewLabel_1);
 		
-		opdId = new JTextField();
-		opdId.setBounds(229, 420, 86, 23);
-		opdId.setColumns(10);
-		panel.add(opdId);
+		aId = new JTextField();
+		aId.setColumns(10);
+		aId.setBounds(264, 423, 86, 23);
+		panel.add(aId);
 		
 		JButton btnNewButton = new JButton("Delete");
-		btnNewButton.setForeground(new Color(0, 0, 255));
-		btnNewButton.setFont(new Font("Times New Roman", Font.PLAIN, 20));
 		btnNewButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				String a=opdId.getText();
+				String a=aId.getText();
 				if(a.isEmpty()) {
-					JOptionPane.showMessageDialog(null,"Enter the Appointment ID");
+					JOptionPane.showMessageDialog(null,"Enter the Admission ID");
 				}
 				else
 				{  
@@ -113,23 +96,23 @@ public class viewappoinments extends JFrame {
 					try {
 						Class.forName("com.mysql.cj.jdbc.Driver");
 						Connection con=DriverManager.getConnection("jdbc:mysql://localhost:3306/hms", "root", "root");	
-						PreparedStatement stmt=con.prepareStatement("delete from opd where opdID=?");  
-						stmt.setString(1,opdId.getText());  
+						PreparedStatement stmt=con.prepareStatement("delete from admission where aId=?");  
+						stmt.setString(1,aId.getText());  
 						  
 						int i=stmt.executeUpdate();  
 						System.out.println(i+" records deleted");
 						con.close();
-						opdId.setText(null);
-						
+			           aId.setText(null);
 					}catch(Exception elem){
 						System.out.println(elem);
-						JOptionPane.showMessageDialog(null,elem);
 					}
 				}
 				}
 				refreshtable();
 			}
 		});
+		btnNewButton.setForeground(new Color(0, 0, 255));
+		btnNewButton.setFont(new Font("Times New Roman", Font.PLAIN, 20));
 		btnNewButton.setBounds(410, 423, 89, 23);
 		panel.add(btnNewButton);
 		
@@ -138,28 +121,41 @@ public class viewappoinments extends JFrame {
 		btnNewButton_2.setForeground(new Color(0, 0, 255));
 		btnNewButton_2.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
-			new opd().setVisible(true);
-			dispose();
+				new admipanel().setVisible(true);
+				dispose();
 			}
 		});
 		btnNewButton_2.setBounds(711, 423, 89, 23);
 		panel.add(btnNewButton_2);
 		
 		JPanel panel_1_1 = new JPanel();
-		panel_1_1.setBackground(new Color(0, 153, 255));
-		panel_1_1.setBounds(0, 11, 1125, 52);
-		panel.add(panel_1_1);
 		panel_1_1.setLayout(null);
+		panel_1_1.setBackground(new Color(0, 153, 255));
+		panel_1_1.setBounds(0, 11, 1332, 52);
+		panel.add(panel_1_1);
 		
-		JLabel lblNewLabel_7 = new JLabel("Patient Appoinment");
-		lblNewLabel_7.setHorizontalAlignment(SwingConstants.CENTER);
-		lblNewLabel_7.setBounds(476, 11, 181, 30);
+		JLabel lblNewLabel_7 = new JLabel("Patient Addmission");
 		lblNewLabel_7.setForeground(Color.WHITE);
 		lblNewLabel_7.setFont(new Font("Times New Roman", Font.PLAIN, 20));
+		lblNewLabel_7.setBounds(598, 11, 154, 30);
 		panel_1_1.add(lblNewLabel_7);
 		
-		refreshtable();
+		JScrollPane scrollPane = new JScrollPane();
+		scrollPane.setBounds(29, 89, 1282, 228);
+		panel.add(scrollPane);
 		
+		table = new JTable();
+		table.setFont(new Font("Tahoma", Font.PLAIN, 12));
+		table.setModel(new DefaultTableModel(
+			new Object[][] {
+			},
+			new String[] {
+				"PatientID", "AdmissionID", "Name", "Age", "Gender", "Reason", "Date_Time", "FloorNo", "ward", "Nurse_on_day_Duty", "Nurse_on_night_duty"
+			}
+		));
+		scrollPane.setViewportView(table);
+		
+		refreshtable();
 	}
 
 	protected void refreshtable() {
@@ -168,12 +164,13 @@ public class viewappoinments extends JFrame {
 			Class.forName("com.mysql.cj.jdbc.Driver");
 			Connection con=DriverManager.getConnection("jdbc:mysql://localhost:3306/hms", "root", "root");	
 									
-			PreparedStatement stmt=con.prepareStatement("select opdID as OPD_ID,p.patientId as PID,p.age as P_Age,p.gender as P_Gender,d.name as D_Name,specialization as Specialization,symptoms as Symptoms,date as Date,time as Time from patient as p inner join opd on p.patientId=opd.patientId inner join doctor as d on opd.doctorId=d.doctorId");
-			//PreparedStatement stmt=con.prepareStatement("Select  * from opd");
+			PreparedStatement stmt=con.prepareStatement("Select f.floorNumber as FloorNO,aId as AdmissionID,p.patientId as PatientID,name as Name,age as Age,gender as Gender,reason as Reason,timestamp as Date_Time,ward as Ward,nurseDayDuty as Nurse_on_day_Duty,nurseNightDuty as Nurse_on_night_Duty from patient p inner join admission as a on p.patientId=a.patientId inner join floordetails as f on a.floorNumber=f.floorNumber");
+
 			ResultSet rs =stmt.executeQuery();
 			table.setModel(DbUtils.resultSetToTableModel(rs));
 		}catch(Exception exe) {
 			System.out.println(exe);
 		}
 	}
+
 }

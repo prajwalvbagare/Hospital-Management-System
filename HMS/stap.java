@@ -20,6 +20,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.awt.event.ActionEvent;
 import javax.swing.DefaultComboBoxModel;
+import javax.swing.ImageIcon;
 
 public class stap extends JFrame {
 
@@ -35,7 +36,6 @@ public class stap extends JFrame {
 	private JTextField age;
 	private JTextField docId;
 	private JComboBox doctors;
-	private JTextField ID;
     
 	/**
 	 * Launch the application.
@@ -247,7 +247,9 @@ public class stap extends JFrame {
 		pName.setColumns(10);
 		
 		JButton Search = new JButton("Search");
-		Search.setBounds(355, 135, 89, 23);
+		Search.setIcon(new ImageIcon("D:\\My Softwares\\Eclipse\\Icon and images for project\\search.png"));
+		Search.setHorizontalAlignment(SwingConstants.LEFT);
+		Search.setBounds(355, 134, 112, 24);
 		Search.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				String pid=pID.getText();
@@ -360,7 +362,7 @@ public class stap extends JFrame {
 		JLabel lblNewLabel_1_2 = new JLabel("Patient Deatils");
 		lblNewLabel_1_2.setForeground(Color.BLACK);
 		lblNewLabel_1_2.setFont(new Font("Times New Roman", Font.PLAIN, 20));
-		lblNewLabel_1_2.setBounds(34, 69, 159, 54);
+		lblNewLabel_1_2.setBounds(48, 69, 159, 54);
 		panel.add(lblNewLabel_1_2);
 		
 		JLabel lblNewLabel_10 = new JLabel("yyyy/mm/dd");
@@ -373,36 +375,8 @@ public class stap extends JFrame {
 		lblNewLabel_10_1.setBounds(307, 472, 86, 23);
 		panel.add(lblNewLabel_10_1);
 		
-		ID = new JTextField();
-		ID.setHorizontalAlignment(SwingConstants.CENTER);
-		ID.setForeground(Color.BLUE);
-		ID.setFont(new Font("Times New Roman", Font.PLAIN, 22));
-		ID.setColumns(10);
-		ID.setBackground(Color.WHITE);
-		ID.setBounds(187, 77, 41, 35);
-		panel.add(ID);
-		
 		Fillcombo();
-		viewID();
-
 	}
-	private void viewID() {
-		// TODO Auto-generated method stub
-		try {
-			Class.forName("com.mysql.cj.jdbc.Driver");
-			Connection con=DriverManager.getConnection("jdbc:mysql://localhost:3306/hms", "root", "root");	
-			PreparedStatement smt=con.prepareStatement("SELECT auto_increment FROM information_schema.TABLES WHERE TABLE_SCHEMA=\"hms\" AND TABLE_NAME=\"opd\"");
-			ResultSet rs=smt.executeQuery();
-			if(rs.next()) {
-                     ID.setText(rs.getString("auto_increment"));
-                     ID.setEditable(false);
-			}
-		}catch(Exception exe)
-		{
-			System.out.println(exe);
-		}
-	}
-
 	private void Fillcombo()
     {
     	try {
